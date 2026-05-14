@@ -86,11 +86,20 @@ try:
 
     text = soup.get_text(" ", strip=True)
 
+    print("========== TESTO PAGINA ==========")
+    print(text)
+    print("==================================")
+
     farmacia_turno = None
 
     for key, value in farmacie.items():
 
+        print(f"Controllo: {key}")
+
         if key.lower() in text.lower():
+
+            print(f"TROVATA: {key}")
+
             farmacia_turno = value
             break
 
@@ -102,6 +111,9 @@ try:
     }
 
 except Exception as e:
+
+    print("ERRORE:")
+    print(str(e))
 
     output = {
         "last_update": datetime.now().strftime("%d/%m/%Y %H:%M"),
