@@ -7,7 +7,7 @@ URL = "https://www.farmaciediturno.org/comune.asp?cod=89006"
 
 farmacie = {
 
-    "Farmacia Santuzzi": {
+    "SANTUZZI": {
         "nome": "Farmacia Santuzzi",
         "indirizzo": "Via XXV Aprile 33-35, Carlentini",
         "telefono": "+39 095 16949397",
@@ -18,7 +18,7 @@ farmacie = {
         "maps_query": "Farmacia Santuzzi Carlentini"
     },
 
-    "Farmacia Sangiorgio": {
+    "SANGIORGIO": {
         "nome": "Farmacia Sangiorgio",
         "indirizzo": "Via Raffaello 150, Carlentini",
         "telefono": "+39 095 991030",
@@ -29,7 +29,7 @@ farmacie = {
         "maps_query": "Farmacia Sangiorgio Carlentini"
     },
 
-    "Farmacia Strazzeri": {
+    "STRAZZERI": {
         "nome": "Farmacia Strazzeri",
         "indirizzo": "Via Guglielmo Marconi 71, Carlentini",
         "telefono": "+39 095 7611196",
@@ -40,7 +40,7 @@ farmacie = {
         "maps_query": "Farmacia Strazzeri Carlentini"
     },
 
-    "Farmacia Inserra": {
+    "INSERRA": {
         "nome": "Farmacia Inserra",
         "indirizzo": "Via Camillo Benso Conte di Cavour 107, Carlentini",
         "telefono": "+39 095 991034",
@@ -51,7 +51,7 @@ farmacie = {
         "maps_query": "Farmacia Inserra Carlentini"
     },
 
-    "Farmacia Morale": {
+    "MORALE": {
         "nome": "Farmacia Morale",
         "indirizzo": "Via Principe Emanuele 52, Pedagaggi",
         "telefono": "+39 095 995288",
