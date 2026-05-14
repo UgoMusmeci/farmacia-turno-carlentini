@@ -1,15 +1,15 @@
 {
-  "last_update": "14/05/2026 14:24",
+  "last_update": "14/05/2026 16:28",
   "source": "https://www.farmaciediturno.org/comune.asp?cod=89006",
   "success": true,
   "farmacia": {
-    "nome": "Farmacia Santuzzi",
-    "indirizzo": "Via XXV Aprile 33-35, Carlentini",
-    "telefono": "+39 095 16949397",
-    "lat": 37.29758984109579,
-    "lng": 15.005323012591258,
+    "nome": "Farmacia Sangiorgio",
+    "indirizzo": "Via Raffaello 150, Carlentini",
+    "telefono": "+39 095 991030",
+    "lat": 37.27230505166669,
+    "lng": 15.016562356992173,
     "comune": "Carlentini",
     "frazione": "",
-    "maps_query": "Farmacia Santuzzi Carlentini"
+    "maps_query": "Farmacia Sangiorgio Carlentini"
   }
 }
