@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
+import re
 
 URL = "https://www.farmaciediturno.org/comune.asp?cod=89006"
 
@@ -92,16 +93,23 @@ try:
 
     farmacia_turno = None
 
-    for key, value in farmacie.items():
+    match = re.search(
+        r"(SANTUZZI|SANGIORGIO|STRAZZERI|INSERRA|MORALE).*?Turno:",
+        text,
+        re.IGNORECASE | re.DOTALL
+    )
 
-        print(f"Controllo: {key}")
+    if match:
 
-        if key.lower() in text.lower():
+        nome_trovato = match.group(1).upper()
 
-            print(f"TROVATA: {key}")
+        print(f"FARMACIA DI TURNO TROVATA: {nome_trovato}")
 
-            farmacia_turno = value
-            break
+        farmacia_turno = farmacie.get(nome_trovato)
+
+    else:
+
+        print("Nessuna farmacia di turno trovata.")
 
     output = {
         "last_update": datetime.now().strftime("%d/%m/%Y %H:%M"),
