@@ -119,6 +119,20 @@ async function caricaFarmacia() {
 
     const farmacia = data.farmacia;
 
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+    let mapsUrl = "";
+
+    if (isIOS) {
+
+      mapsUrl = `https://maps.apple.com/?daddr=${farmacia.lat},${farmacia.lng}`;
+
+    } else {
+
+      mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${farmacia.lat},${farmacia.lng}`;
+
+    }
+
     document.getElementById('app').innerHTML = `
 
       <div class="card">
@@ -142,7 +156,8 @@ async function caricaFarmacia() {
 
         <a
           class="button"
-          href="https://www.google.com/maps/dir/?api=1&destination=${farmacia.lat},${farmacia.lng}"
+          id="indicazioni-btn"
+          href="${mapsUrl}"
           target="_blank">
 
           INDICAZIONI
