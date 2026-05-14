@@ -1,0 +1,193 @@
+```html id="9hz4zt"
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Farmacia di Turno - Carlentini</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f3f5f7;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      max-width: 760px;
+      margin: auto;
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .badge {
+      color: #0073aa;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 34px;
+      color: #222;
+    }
+
+    .indirizzo {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    .telefono {
+      margin-bottom: 24px;
+    }
+
+    .telefono a {
+      color: #0073aa;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .button {
+      display: inline-block;
+      background: #0073aa;
+      color: white;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-bottom: 24px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 380px;
+      border: 0;
+      border-radius: 14px;
+    }
+
+    .footer {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .error {
+      color: #a00;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div id="app">
+
+  <div class="card">
+    Caricamento farmacia di turno...
+  </div>
+
+</div>
+
+<script>
+
+async function caricaFarmacia() {
+
+  try {
+
+    const response = await fetch('./data/farmacia.json?v=' + Date.now());
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error("JSON non valido");
+    }
+
+    const farmacia = data.farmacia;
+
+    document.getElementById('app').innerHTML = `
+
+      <div class="card">
+
+        <div class="badge">
+          Farmacia di turno
+        </div>
+
+        <h1>${farmacia.nome}</h1>
+
+        <div class="indirizzo">
+          📍 ${farmacia.indirizzo}
+        </div>
+
+        <div class="telefono">
+          ☎️
+          <a href="tel:${farmacia.telefono}">
+            ${farmacia.telefono}
+          </a>
+        </div>
+
+        <a
+          class="button"
+          href="https://www.google.com/maps/dir/?api=1&destination=${farmacia.lat},${farmacia.lng}"
+          target="_blank">
+
+          INDICAZIONI
+
+        </a>
+
+        <iframe
+          loading="lazy"
+          allowfullscreen
+          src="https://www.google.com/maps?q=${farmacia.lat},${farmacia.lng}&output=embed">
+        </iframe>
+
+        <div class="footer">
+          Aggiornato: ${data.last_update}
+        </div>
+
+      </div>
+
+    `;
+
+  } catch(error) {
+
+    document.getElementById('app').innerHTML = `
+
+      <div class="card">
+
+        <h2 class="error">
+          Servizio momentaneamente non disponibile
+        </h2>
+
+      </div>
+
+    `;
+
+    console.error(error);
+
+  }
+
+}
+
+caricaFarmacia();
+
+</script>
+
+</body>
+</html>
+```
