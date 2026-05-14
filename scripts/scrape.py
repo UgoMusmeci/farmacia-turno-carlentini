@@ -3,8 +3,11 @@ from bs4 import BeautifulSoup
 import json
 from datetime import datetime
 import re
+import os
 
 URL = "https://www.farmaciediturno.org/comune.asp?cod=89006"
+
+OUTPUT_FILE = "data/farmacia.json"
 
 farmacie = {
 
@@ -83,38 +86,119 @@ try:
     print(text)
     print("==================================")
 
-    turno_match = re.search(
-        r"(SANTUZZI|SANGIORGIO|STRAZZERI|INSERRA|MORALE).*?Turno:\s*Tutto il giorno",
-        text,
-        re.IGNORECASE | re.DOTALL
-    )
+    text_upper = text.upper()
 
-    if turno_match:
+    farmacia_trovata = None
+    punteggio_massimo = 0
 
-        nome_turno = turno_match.group(1).upper()
+    indicatori = [
+        ("TURNO", 100),
+        ("TUTTO IL GIORNO", 80),
+        ("FINO A DOMANI", 70),
+        ("REPERIBILIT", 60),
+        ("APERTA", 10)
+    ]
 
-        print(f"FARMACIA DI TURNO TROVATA: {nome_turno}")
+    for nome_farmacia in farmacie.keys():
 
-        farmacia_turno = farmacie.get(nome_turno)
+        print(f"\nAnalisi farmacia: {nome_farmacia}")
 
-        if farmacia_turno:
+        pattern = rf"{nome_farmacia}(.*?)(SANTUZZI|SANGIORGIO|STRAZZERI|INSERRA|MORALE|LINK PERMANENTE)"
 
-            output["success"] = True
-            output["farmacia"] = farmacia_turno
+        match = re.search(
+            pattern,
+            text_upper,
+            re.DOTALL
+        )
+
+        if not match:
+            print("Blocco non trovato")
+            continue
+
+        blocco = match.group(1)
+
+        punteggio = 0
+
+        for indicatore, valore in indicatori:
+
+            if indicatore in blocco:
+
+                punteggio += valore
+
+                print(f"Indicatore trovato: {indicatore} (+{valore})")
+
+        print(f"Punteggio finale: {punteggio}")
+
+        if punteggio > punteggio_massimo:
+
+            punteggio_massimo = punteggio
+            farmacia_trovata = nome_farmacia
+
+    if farmacia_trovata:
+
+        print(f"\nFARMACIA DI TURNO IDENTIFICATA: {farmacia_trovata}")
+
+        output["success"] = True
+        output["farmacia"] = farmacie[farmacia_trovata]
 
     else:
 
-        print("NESSUNA FARMACIA DI TURNO TROVATA")
+        print("\nNESSUNA FARMACIA IDENTIFICATA")
+
+        # FALLBACK: mantieni ultimo JSON valido
+
+        if os.path.exists(OUTPUT_FILE):
+
+            print("Tentativo recupero ultimo JSON valido...")
+
+            with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+
+                vecchio_output = json.load(f)
+
+                if vecchio_output.get("success"):
+
+                    output = vecchio_output
+
+                    output["warning"] = (
+                        "Impossibile aggiornare automaticamente. "
+                        "Mostrato ultimo dato valido."
+                    )
+
+                    print("Ultimo JSON valido recuperato.")
 
 except Exception as e:
 
-    print("ERRORE:")
+    print("\nERRORE:")
     print(str(e))
 
     output["error"] = str(e)
 
-with open("data/farmacia.json", "w", encoding="utf-8") as f:
+    # FALLBACK SU ULTIMO JSON VALIDO
+
+    if os.path.exists(OUTPUT_FILE):
+
+        try:
+
+            with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+
+                vecchio_output = json.load(f)
+
+                if vecchio_output.get("success"):
+
+                    output = vecchio_output
+
+                    output["warning"] = (
+                        "Errore aggiornamento automatico. "
+                        "Mostrato ultimo dato valido."
+                    )
+
+                    print("Recuperato ultimo JSON valido.")
+
+        except:
+            pass
+
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
 
     json.dump(output, f, ensure_ascii=False, indent=2)
 
-print("JSON aggiornato.")
+print("\nJSON aggiornato.")
