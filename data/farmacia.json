@@ -1,6 +1,15 @@
 {
-  "last_update": "14/05/2026 14:19",
+  "last_update": "14/05/2026 14:24",
   "source": "https://www.farmaciediturno.org/comune.asp?cod=89006",
-  "success": false,
-  "farmacia": {}
+  "success": true,
+  "farmacia": {
+    "nome": "Farmacia Santuzzi",
+    "indirizzo": "Via XXV Aprile 33-35, Carlentini",
+    "telefono": "+39 095 16949397",
+    "lat": 37.29758984109579,
+    "lng": 15.005323012591258,
+    "comune": "Carlentini",
+    "frazione": "",
+    "maps_query": "Farmacia Santuzzi Carlentini"
+  }
 }
