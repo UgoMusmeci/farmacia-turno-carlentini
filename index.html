@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <title>Farmacia di Turno - Carlentini</title>
 
@@ -16,43 +16,49 @@
 
     body {
       margin: 0;
-      padding: 20px;
+      padding: 12px;
       background: #f3f5f7;
       font-family: Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
     .card {
+      width: 100%;
       max-width: 760px;
       margin: auto;
       background: white;
-      border-radius: 18px;
-      padding: 24px;
+      border-radius: 20px;
+      padding: 20px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
 
     .badge {
       color: #0073aa;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: bold;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     h1 {
       margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 34px;
+      margin-bottom: 14px;
+      font-size: 32px;
+      line-height: 1.1;
       color: #222;
     }
 
     .indirizzo {
-      font-size: 18px;
-      margin-bottom: 10px;
+      font-size: 17px;
+      line-height: 1.4;
+      margin-bottom: 12px;
       color: #444;
     }
 
     .telefono {
-      margin-bottom: 24px;
+      margin-bottom: 18px;
+      font-size: 16px;
     }
 
     .telefono a {
@@ -62,31 +68,62 @@
     }
 
     .button {
-      display: inline-block;
+      display: block;
+      width: 100%;
       background: #0073aa;
       color: white;
       text-decoration: none;
-      padding: 14px 24px;
-      border-radius: 10px;
+      text-align: center;
+      padding: 16px;
+      border-radius: 12px;
       font-weight: bold;
-      margin-bottom: 24px;
+      font-size: 16px;
+      margin-bottom: 18px;
     }
 
     iframe {
       width: 100%;
-      height: 380px;
+      height: 300px;
       border: 0;
-      border-radius: 14px;
+      border-radius: 16px;
     }
 
     .footer {
-      margin-top: 16px;
+      margin-top: 14px;
       font-size: 12px;
       color: #666;
+      text-align: center;
     }
 
     .error {
       color: #a00;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+
+      body {
+        padding: 24px;
+      }
+
+      .card {
+        padding: 28px;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      iframe {
+        height: 420px;
+      }
+
+      .button {
+        display: inline-block;
+        width: auto;
+        padding: 14px 24px;
+      }
+
     }
 
   </style>
@@ -156,11 +193,10 @@ async function caricaFarmacia() {
 
         <a
           class="button"
-          id="indicazioni-btn"
           href="${mapsUrl}"
           target="_blank">
 
-          INDICAZIONI
+          APRI NAVIGAZIONE
 
         </a>
 
