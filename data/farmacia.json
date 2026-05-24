@@ -1,12 +1,12 @@
 {
-  "last_update": "24/05/2026 21:04",
+  "last_update": "24/05/2026 22:31",
   "source": "https://www.farmaciediturno.org/comune.asp?cod=89006",
   "success": true,
   "farmacia": {
-    "nome": "Farmacia Strazzeri",
-    "indirizzo": "Via Guglielmo Marconi 71, Carlentini",
-    "telefono": "+39 095 7611196",
-    "lat": 37.2763652,
-    "lng": 15.0161213
+    "nome": "Farmacia Sangiorgio",
+    "indirizzo": "Via Raffaello 150, Carlentini",
+    "telefono": "+39 095 991030",
+    "lat": 37.27230505166669,
+    "lng": 15.016562356992173
   }
 }
