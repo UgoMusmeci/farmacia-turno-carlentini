@@ -1,5 +1,5 @@
 {
-  "last_update": "25/07/2026 12:05",
+  "last_update": "25/07/2026 15:42",
   "source": "https://www.farmaciediturno.org/comune.asp?cod=89006",
   "success": true,
   "farmacia": {
@@ -8,6 +8,5 @@
     "telefono": "+39 095 991030",
     "lat": 37.27230505166669,
     "lng": 15.016562356992173
-  },
-  "warning": "Errore aggiornamento automatico. Mostrato ultimo dato valido."
+  }
 }
