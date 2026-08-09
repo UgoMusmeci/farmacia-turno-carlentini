@@ -1,13 +1,12 @@
 {
-  "last_update": "09/08/2026 21:38",
+  "last_update": "09/08/2026 23:37",
   "source": "https://www.farmaciediturno.org/comune.asp?cod=89006",
   "success": true,
   "farmacia": {
-    "nome": "Farmacia Santuzzi",
-    "indirizzo": "Via XXV Aprile 33-35, Carlentini",
-    "telefono": "+39 095 16949397",
-    "lat": 37.29758984109579,
-    "lng": 15.005323012591258
-  },
-  "warning": "Impossibile aggiornare automaticamente. Mostrato ultimo dato valido."
+    "nome": "Farmacia Strazzeri",
+    "indirizzo": "Via Guglielmo Marconi 71, Carlentini",
+    "telefono": "+39 095 7611196",
+    "lat": 37.2763652,
+    "lng": 15.0161213
+  }
 }
